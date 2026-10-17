@@ -1,0 +1,14 @@
+# Dependencias detectadas, sin inventar versiones de entorno histórico.
+# Capturar versiones exactas únicamente en Colab/entorno donde se audite el estudio.
+python-dateutil
+numpy
+pandas
+matplotlib
+scipy
+scikit-learn
+xgboost
+joblib
+shap
+openpyxl
+ipykernel
+jupyter
