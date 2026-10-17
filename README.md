@@ -1,12 +1,11 @@
 # ENEMDU 2025 — Heterogeneidad socioeconómica y protección económica
 
-[![Estado](https://img.shields.io/badge/reproducibilidad-auditoría_pendiente-lightgrey)](docs/ESTADO_OBSERVACIONES_TUTOR.md)
 
 ## Objeto de la investigación
 
 Segmentación en cuatro perfiles empíricos de **protección económica en su dimensión económico-laboral y pensionaria** de adultos mayores en Ecuador, seguida de clasificación a partir de predictores sociodemográficos. Fuente: microdatos ENEMDU 2025 (INEC), sujetos a sus condiciones oficiales de uso.
 
-**Estado de auditoría (17/oct/2026):** **reproducibilidad integral aún no certificada**. El ZIP original aportado permitió validar las predicciones RF y recuperar los scripts originales desde microdatos; se incluyen copias portables, aún pendientes de contrastar íntegramente con la ejecución histórica. El manuscrito no debe afirmar lo contrario.
+**Alcance de esta versión:** incluye la trazabilidad de la preparación de datos, la segmentación, la estabilidad y la evaluación histórica a partir de los artefactos conservados. La reconstrucción exacta del entrenamiento supervisado se documenta como una verificación metodológica todavía abierta; por ello no se presenta como una reproducción integral certificada.
 
 ## Repositorio del proyecto
 
