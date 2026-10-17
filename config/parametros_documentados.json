@@ -1,0 +1,39 @@
+{
+  "titulo": "Heterogeneidad socioeconomica y proteccion economica de adultos mayores en Ecuador (ENEMDU 2025)",
+  "fecha_auditoria": "2026-10-17",
+  "reproducibilidad_integral_demostrada": false,
+  "unidad_muestral": "registro ENEMDU para persona 65+",
+  "registros": 45959,
+  "posiciones_persona_hogar_panel": 31101,
+  "grupos": 4,
+  "ari_bootstrap_medio": 0.9905,
+  "semilla": 42,
+  "test_original": 13788,
+  "train_original": 32171,
+  "split_original": "por registros, estratificado; no agrupado por posiciones de panel",
+  "dependencia_panel_test_train": {
+    "test_con_base_gemela_train": 6362,
+    "porcentaje_test": 46.14
+  },
+  "rf_definitivo_metrica_documentada": {
+    "accuracy": 0.5308,
+    "f1_macro": 0.4588,
+    "f1_weighted": 0.5535,
+    "kappa": 0.3465,
+    "log_loss": 1.0464
+  },
+  "rf_ejecucion_exploratoria_no_oficial": {
+    "accuracy": 0.5504,
+    "f1_macro": 0.4709
+  },
+  "tabla_A2_RF_oficial_comprobada": true,
+  "insumos_externos_necesarios": [
+    "enedmu_adultos_mayores.zip (PRIVADO, disponible al autor; no subir a GitHub)",
+    "Probabilidades TRAIN OOF y TEST del RF histórico para calibración y análisis de cambios de umbral (aún no disponibles)",
+    "Detalles del entorno y parámetros efectivos del entrenamiento histórico para explicar discrepancia 0.5308 vs 0.5504"
+  ],
+  "observacion": "Las métricas basadas en etiquetas oficiales RF (accuracy, F1, kappa) ya fueron recalculadas desde pred_rf.npy y split_test_idx.npy; log-loss 1.0464 figura en archivo histórico sin probabilidades para recalcularlo. La reproducción completa del ajuste RF sigue pendiente.",
+  "tipo_tabla_A2": "Sensibilidad/recall por clase en TEST del RF histórico, no sensibilidad a cambio de umbral.",
+  "cuenta_git_destino": "Julians30",
+  "repositorio_sugerido": "enemdu-2025-economic-protection-older-adults"
+}
