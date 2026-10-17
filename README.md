@@ -13,18 +13,15 @@ Segmentación en cuatro perfiles empíricos de **protección económica en su di
 Repositorio oficial de código del proyecto: **[Julians30/enemdu-2025-economic-protection-older-adults](https://github.com/Julians30/enemdu-2025-economic-protection-older-adults)**.
 Este repositorio contiene código, documentación, configuraciones documentadas y **resultados agregados de auditoría**, pero no contiene los microdatos ENEMDU ni los artefactos por registro. **La publicación de código no certifica automáticamente la reproducibilidad del entrenamiento histórico.** Se prevé archivar una versión con DOI cuando se hayan cerrado las comprobaciones restantes.
 
-## Hallazgo crítico: Random Forest
+## Resultados de referencia y verificación
 
-| Resultado | Accuracy | F1-macro | Condición |
-|---|---:|---:|---|
-| **RF definitivo del manuscrito** | **0,5308** | **0,4588** | **Recalculado y verificado** desde `pred_rf.npy`, `split_test_idx.npy` y etiquetas del dataset segmentado (datos privados) |
-| RF reentrenado en notebook de métricas avanzadas | 0,5504 | 0,4709 | Otra ejecución; **NO PUBLICAR COMO RF DEL ARTÍCULO** |
+El análisis documenta cuatro perfiles económico-laborales y pensionarios mediante K-means. En la evaluación supervisada histórica, las métricas de Random Forest fueron **accuracy = 0,5308**, **F1-macro = 0,4588**, **F1-ponderado = 0,5535** y **kappa = 0,3465**. Estas métricas fueron **recalculadas a partir de predicciones y etiquetas archivadas** para los 13.788 registros de prueba y no se confunden con un nuevo entrenamiento.
 
-Los resultados numéricamente diferentes proceden de distintas ejecuciones del proceso RF: el notebook avanzado ajusta `RandomizedSearchCV` sobre submuestra 12.000, con tres combinaciones y dos pliegues. **No se atribuye automáticamente la discrepancia a una causa concreta** hasta cotejar el entrenamiento original, parámetros y versiones. En el manuscrito se conservan: accuracy=0,5308; F1-macro=0,4588; F1-ponderado=0,5535; kappa=0,3465; log-loss=1,0464.
+La preparación de datos, la segmentación y las comprobaciones de estabilidad se contrastaron con los artefactos originales. La **reproducción exacta del ajuste histórico de Random Forest** continúa bajo auditoría y no debe darse por certificada. La trazabilidad de ejecuciones y las diferencias entre ajustes independientes se explican en [la documentación técnica de auditoría](docs/ESTADO_OBSERVACIONES_TUTOR.md). Ningún nuevo ajuste sustituye automáticamente el resultado de referencia.
 
 ## Carpeta de notebooks
 
-- `notebooks/01_ENEMDU_Evaluacion_Avanzada_CORREGIDA.ipynb`: reentrena modelos y compara con archivos históricos. Indica claramente que sus resultados NO son necesariamente los oficiales; exporta archivos con etiqueta `REENTRENAMIENTO_NO_OFICIAL`. Exige la partición exacta del ZIP.
+- `notebooks/01_ENEMDU_Evaluacion_Avanzada_CORREGIDA.ipynb`: permite realizar una evaluación experimental independiente y documentada. Sus métricas no sustituyen las del conjunto de artefactos históricos; exige la partición exacta del ZIP.
 - `notebooks/02_Auditar_RF_definitivo_y_tabla_A2.ipynb`: lee el ZIP privado original y verifica el RF oficial **0,5308**, generando sensibilidad por clase y falsos negativos a partir de `pred_rf.npy`. Los umbrales alternativos siguen sin reconstruirse sin probabilidades originales.
 
 **Todos los notebooks se entregan sin salidas preguardadas**, para evitar confusiones con resultados anteriores o publicación involuntaria de datos.
@@ -34,7 +31,7 @@ Los resultados numéricamente diferentes proceden de distintas ejecuciones del p
 1. Descargar y conservar de forma privada `enedmu_adultos_mayores.zip`. **No subirlo a GitHub**.
 2. Abrir en Colab el notebook `01_...CORREGIDA.ipynb` e instalar paquetes en el entorno real (las dependencias exactas de la ejecución histórica todavía deben recuperarse).
 3. Subir el ZIP cuando lo solicite la celda 2. Debe incluir `adultos_mayores_con_cluster.csv` y `split_test_idx.npy`. El cuaderno se detiene si falta el split exacto.
-4. Ejecutar celdas secuencialmente. El ZIP descargado corresponde a **reentrenamiento de contraste**. Revisar `00_control_RF_oficial_vs_reentrenamiento.csv` y estado de reproducción.
+4. Ejecutar celdas secuencialmente. Los resultados generados por este notebook son una **nueva ejecución experimental**. Consultar los archivos de control para conocer su procedencia y no mezclarlos con los resultados archivados.
 5. Si están disponibles las probabilidades TEST y TRAIN-OOF del RF definitivo, abrir el notebook `02_...tabla_A2.ipynb`. Con solo `metricas_rf.csv` **NO** es posible reconstruir la tabla A2.
 6. Guardar las predicciones en carpeta privada, comprobando que TEST corresponde exactamente a 13.788 registros y que la selección de umbral usa solo TRAIN.
 7. Ejecutar `python scripts/01_auditar_insumos.py /ruta/enedmu_adultos_mayores.zip` para auditoría de inventario y `python scripts/02_capturar_entorno.py --output_dir evidencias/entorno_real` en el **mismo entorno que ejecutó el análisis**. Verificar que la interfaz de ejecución coincide con la versión indicada en el manuscrito.
@@ -67,7 +64,7 @@ requirements_por_verificar.in  # paquetes, todavía sin versión confirmada
 
 La URL pública corresponde a este repositorio. Para citar una versión inmutable, use el enlace al commit concreto de GitHub. El DOI de Zenodo/OSF todavía no existe y no se ha inventado.
 
-## Nueva evidencia incorporada del ZIP privado (17/oct/2026)
+## Evidencia de auditoría del archivo original (17/oct/2026)
 
 - Se recibieron scripts originales, microdatos 2025, base segmentada e índices/predicciones históricos. **Los microdatos NO se incluyen aquí**.
 - RF definitivo recalculado desde etiquetas: accuracy=**0,530751** (0,5308), F1-macro=**0,458765** (0,4588), F1-ponderado=**0,553518**, kappa=**0,346520**.
