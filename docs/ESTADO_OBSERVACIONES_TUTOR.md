@@ -3,7 +3,7 @@
 | Observación | Estado de esta entrega (17/oct/2026) | Evidencia / acción |
 |---|---|---|
 | Corregir numeración 3.8 → 4 y siguientes | **Corregido en Word** | `ENEMDU_2025_Manuscrito_RF_VERIFICADO_17OCT2026.docx` se entrega aparte |
-| RF definitivo 0,5308; no confundir con 0,5504 | **Resuelto en documentación y notebook exploratorio** | El 01 etiqueta todas las corridas nuevas como NO OFICIALES |
+| Métricas de RF histórico y trazabilidad de entrenamiento | **Métricas auditadas; reproducción exacta del ajuste pendiente** | Exactitud y F1 comprobados mediante predicciones archivadas; ejecuciones de contraste identificadas de forma separada |
 | Tabla A2 sensibilidad RF definitivo | **PARCIALMENTE RESUELTA — sensibilidad por clase auditada** | La Tabla A2 recoge recall del RF oficial basado en `pred_rf.npy`; el análisis de sensibilidad a umbrales sigue pendiente de probabilidades RF originales |
 | Repositorio estable con código completo desde microdatos crudos | **PARCIAL: scripts recuperados** | Los scripts de todas las fases se recuperaron del ZIP y adaptaron a rutas portables; falta ejecutar y comprobar íntegramente el flujo |
 | README, instrucciones, entorno, versiones | **PARCIAL** | README e instrucciones listas, captura de entorno provista; versiones históricas pendientes de verificar |
@@ -19,11 +19,11 @@
 
 ## Comprobaciones efectivas desde el ZIP privado (actualización 17/10/2026)
 
-Se contrastó el CSV preparado y las 45.959 etiquetas K=4 (coincidencia íntegra), las 25 estimaciones bootstrap (idénticas) y los 13.788 índices de TEST (idénticos). `pred_rf.npy` reproduce las métricas de RF auditadas. **El reentrenamiento actual sigue generando accuracy 0,5504 y F1-macro 0,4709**, diferentes de RF histórico 0,5308/0,4588. Esta discordancia es un **pendiente de reproducibilidad**, no un error tipográfico corregido por sustitución.
+Se contrastó el CSV preparado y las 45.959 etiquetas K=4 (coincidencia íntegra), las 25 estimaciones bootstrap (idénticas) y los 13.788 índices de TEST (idénticos). `pred_rf.npy` reproduce las métricas de RF auditadas. Una ejecución independiente con las dependencias disponibles produjo resultados distintos de los archivados (accuracy 0,5504 y F1-macro 0,4709 frente a 0,5308 y 0,4588, respectivamente). Este ensayo **no forma parte de la estimación de referencia del manuscrito**. Hasta recuperar el entorno y los parámetros efectivos del ajuste original, la reproducibilidad completa de esta etapa permanece sin demostrar. La documentación conserva la divergencia para permitir su investigación; no se confunden estimaciones de distintas ejecuciones.
 
 La Tabla A2 introducida es de sensibilidad por clase (recall); una **tabla de sensibilidad a variaciones de umbral** continúa pendiente de probabilidades de la ejecución histórica. No publicar material con datos individualizados.
 
 
-## Cambio de cuenta de publicación
+## Ubicación del repositorio
 
-Destino autorizado solicitado por el autor: **`Julians30`**. La versión previa `romero-coronel/Heterogeneidad` es un repositorio de otro propietario sobre el que la conexión actual solo tiene lectura. El repositorio actual de `Julians30` es el destino de publicación. El artículo debe citar esta URL y preferiblemente un commit inmutable; no se ha asignado DOI.
+Repositorio de código y documentación: **https://github.com/Julians30/enemdu-2025-economic-protection-older-adults**. Para trazabilidad bibliográfica, se recomienda citar una versión fija (commit o liberación archivada con DOI una vez validada). No se ha asignado DOI.
