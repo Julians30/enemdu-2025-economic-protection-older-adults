@@ -24,6 +24,11 @@ Se contrastó el CSV preparado y las 45.959 etiquetas K=4 (coincidencia íntegra
 La Tabla A2 introducida es de sensibilidad por clase (recall); una **tabla de sensibilidad a variaciones de umbral** continúa pendiente de probabilidades de la ejecución histórica. No publicar material con datos individualizados.
 
 
+
+### Nota de procedencia de archivos históricos
+
+En el ZIP original, el metadato de fecha del archivo `scripts/05_supervisado.py` es posterior al de `outputs/tablas/pred_rf.npy` y `outputs/tablas/metricas_rf.csv`. Estas marcas **no permiten afirmar que el script haya cambiado sustancialmente** (pueden verse afectadas por copias y empaquetado), pero tampoco acreditan que el código actualmente conservado sea la versión exacta que generó las predicciones originales. Recuperar el commit, registro de parámetros efectivos o artefacto del modelo entrenado permitiría fortalecer la reconstrucción.
+
 ## Ubicación del repositorio
 
 Repositorio de código y documentación: **https://github.com/Julians30/enemdu-2025-economic-protection-older-adults**. Para trazabilidad bibliográfica, se recomienda citar una versión fija (commit o liberación archivada con DOI una vez validada). No se ha asignado DOI.
