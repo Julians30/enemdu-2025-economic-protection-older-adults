@@ -1,7 +1,5 @@
 {
   "type": "nueva_ejecucion_referencia_2026-10-17",
-  "historical_rf_accuracy": 0.5308,
-  "historical_rf_status": "salidas verificadas; no entrenamiento idéntico",
   "zip_sha256": "6f43393e72a270329b1f5a38542948f082c4c640743c2f9a16d2b8f12e0936d0",
   "semilla": 42,
   "test_n": 13788,
@@ -96,5 +94,6 @@
   ],
   "rf_threshold_selected_train_oof": 0.49,
   "scope": "clasificadores desde etiquetas K-means del dataset original: no revalida clusters externos",
-  "test_indices_and_predictions_are_private": true
+  "test_indices_and_predictions_are_private": true,
+  "estado_referencia": "evaluacion_supervisada_unica_fijada_y_repetida"
 }
