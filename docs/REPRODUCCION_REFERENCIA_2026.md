@@ -7,5 +7,5 @@
 - Python 3.13.5, numpy 2.3.5, pandas 2.2.3, scikit-learn 1.8.0, XGBoost 3.1.3; OPENBLAS_NUM_THREADS=OMP_NUM_THREADS=MKL_NUM_THREADS=1.
 - Corridas independientes A y B: resultados completos de Tabla 3, vectores de predicción, matrices de probabilidades (logit/RF/XGB) y vectores OOF RF **idénticos byte a byte** en el mismo entorno controlado. Solo los agregados se publican.
 - Evaluación avanzada: TRAIN-OOF 3 folds, selección isotónica en partición TRAIN-OOF 80/20, reajuste sobre OOF TRAIN; TEST nunca se usa para calibración o elección de umbral. Segunda evaluación avanzada coincidió exactamente.
-- Los datos y archivos individuales usados en la auditoría, incluidos los hashes de verificación, se preservan de forma privada. Las salidas de 2025 del Random Forest anterior con accuracy 0,5308 se documentan como *histórico verificado por etiquetas*, no como entrenamiento histórico recuperado.
+- Los datos y artefactos por registro se preservan en un repositorio privado del autor; los resultados principales solo proceden de la ejecución de referencia documentada y repetida.
 - Validación de independencia longitudinal: GroupShuffleSplit complementario n_train=32.237 y n_test=13.722, cero claves compartidas; no valida nueva segmentación fuera de muestra.
