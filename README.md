@@ -15,9 +15,10 @@
 
 Estas métricas, las probabilidades y las predicciones **se reprodujeron de forma idéntica byte a byte en dos ejecuciones independientes con el entorno fijado y un hilo**. Las evaluaciones avanzadas también se repitieron con resultados idénticos. Solo se publican métricas agregadas.
 
-### Contexto de trazabilidad histórica
+### Versión única de resultados del manuscrito
 
-Un archivo histórico anterior de Random Forest conserva **accuracy = 0,5308** y **F1-macro = 0,4588** (recalculables desde predicciones archivadas), pero no se ha recuperado la configuración efectiva del entrenamiento que los generó. Por tanto, **esos valores históricos no se mezclan con las tablas de referencia actuales ni se presenta su ajuste como reproducido**. Esta distinción se explica en el apéndice del manuscrito y la [matriz de observaciones](docs/ESTADO_OBSERVACIONES_TUTOR.md).
+La Tabla 3 y los análisis principales se generan **exclusivamente** mediante la ejecución supervisada de referencia fijada (semilla 42, parámetros registrados y entorno versionado). Para Random Forest, la **exactitud (accuracy) principal es 0,5504**; su F1-macro es 0,4709. Los archivos antiguos de trabajo se conservan fuera de la entrega activa como antecedentes privados de auditoría; no deben mezclarse con la nueva ejecución.
+
 
 ## Archivos para reproducir
 
