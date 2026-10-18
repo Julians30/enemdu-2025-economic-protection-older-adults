@@ -1,4 +1,4 @@
-# ENEMDU 2025 — Economic Protection of Older Adults in Ecuador
+# ENEMDU 2025 - Economic Protection of Older Adults in Ecuador
 
 **Segmentación económico-laboral y pensionaria de personas de 65 años o más.** Estudio con K-means, evaluación supervisada de tres clasificadores, calibración, sensibilidad a umbrales y explicabilidad. Esta versión documenta una **nueva ejecución supervisada reproducible**, distinta de ciertos resultados históricos archivados.
 
