@@ -43,7 +43,10 @@ def public_check(public):
     saved={d['modelo']:d for d in meta['metrics']}
     for r in rows:
         for k in KEYS: close(r[k], saved[r['modelo']][k], f'{r["modelo"]}/{k}')
-    a3=read_csv(public/'TABLA_A2_SENSIBILIDAD_UMBRAL_RF.csv')
+    a3_path=public/'TABLA_A3_SENSIBILIDAD_RF_UMBRAL.csv'
+    if not a3_path.exists():
+        a3_path=public/'TABLA_A2_SENSIBILIDAD_UMBRAL_RF.csv'
+    a3=read_csv(a3_path)
     ensure(len(a3)>=2 and any(row['escenario']=='argmax' for row in a3),'Faltan escenarios RF')
     selected=float(meta['rf_threshold_selected_train_oof'])
     ensure(any(row['escenario']=='umbral_train_oof' and abs(float(row['t2'])-selected)<1e-9 for row in a3),
