@@ -36,7 +36,7 @@ python scripts/validacion_agrupada_panel.py --zip /ruta/privada/enedmu_adultos_m
 
 Las dependencias versionadas corresponden a la ejecución de auditoría de octubre de 2026; **no** son una reconstrucción documentada del entorno original de entrenamiento. Las diferencias de biblioteca/versión pueden modificar levemente las estimaciones.
 
-**Resultados históricos que se conservan en el manuscrito:** Random Forest accuracy 0,5308 y F1-macro 0,4588, verificados desde las etiquetas archivadas del TEST original. La discrepancia con la repetición del ajuste histórico aún no está explicada completamente.
+**Resultados principales del manuscrito:** proceden exclusivamente de la ejecución supervisada de referencia (Tabla 3). Este análisis agrupado se reporta por separado y no constituye una segunda estimación sobre la partición TEST principal.
 
 ## Privacidad
 
