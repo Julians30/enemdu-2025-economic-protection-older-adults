@@ -20,7 +20,8 @@
 
 La **nueva evaluación supervisada de referencia** —no el ajuste anterior archivado— se reentrenó con configuración y entorno fijados. RF = accuracy **0,5504**, F1-macro **0,4709**; XGBoost = **0,5424/0,4676**; Logit = **0,5157/0,4500**. Los resultados probabilísticos, la calibración isotónica y la selección de umbrales proceden de las mismas ejecuciones y están documentados en [el protocolo](REPRODUCCION_REFERENCIA_2026.md). Los vectores individuales y modelos se conservan privados.
 
-El Random Forest archivado con accuracy **0,5308** se verificó desde sus predicciones pero **no pudo reentrenarse exactamente** con los scripts/entorno históricos conservados. Sus cifras aparecen únicamente como antecedente metodológico en el apéndice, no como desempeño principal. No se debe afirmar que el ajuste histórico está reproducido.
+La versión principal usa una sola configuración supervisada verificable. Los antecedentes de ejecuciones previas permanecen en archivo privado y fuera de las tablas principales de este borrador. No se reivindica la recuperación exacta de un ajuste previo.
+
 
 ## Límites científicos persistentes
 
