@@ -55,6 +55,12 @@ requirements_por_verificar.in  # paquetes, todavía sin versión confirmada
 - No atribuir métricas ni gráficos del RF reentrenado a la ejecución definitiva.
 - No publicar predicciones individuales, CSV analíticos, modelos serializados ni ZIP originales sin revisar bases legales, condiciones del INEC y privacidad.
 
+## Validación complementaria agrupada por posiciones del panel
+
+Se realizó una comprobación adicional de la fase supervisada con **GroupShuffleSplit** (semilla 42) sobre claves base de `id_persona` sin el sufijo de mes: 32.237 registros en TRAIN, 13.722 en TEST y **cero claves compartidas**. Los tres clasificadores se reentrenaron con atributos sociodemográficos y se publicaron únicamente **métricas agregadas**, código y metadatos (sin registros individuales).
+
+Esta evaluación **no sustituye** el TEST histórico de la Tabla 3 ni valida externamente el K-means (las etiquetas se construyeron originalmente con toda la muestra). Consulta [protocolo, resultados e interpretación](docs/VALIDACION_AGRUPADA_PANEL_2026.md) y [script de ejecución](scripts/validacion_agrupada_panel.py). Se dispone también de un notebook de Google Colab en el Drive privado del proyecto.
+
 ## Estado de la Tabla A2
 
 **Verificada como sensibilidad de clasificación por segmentos (recall por clase)** con los vectores originales `pred_rf.npy` y `split_test_idx.npy`. La sensibilidad a cambios de umbral no está demostrada por falta de probabilidades del RF original. La anterior A2 de XGBoost pasa a A3 en el manuscrito revisado.
