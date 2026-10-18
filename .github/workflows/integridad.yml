@@ -19,3 +19,6 @@ jobs:
           python-version: '3.11'
       - name: Revisar sintaxis, notebooks y archivos prohibidos
         run: python scripts/validar_publicacion.py
+
+      - name: Verificar métricas agregadas de referencia
+        run: python scripts/09_verificar_entrega_referencia.py --public evidencias/referencia_supervisada_2026
