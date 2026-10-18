@@ -45,6 +45,18 @@ python scripts/08_figuras_avanzadas_referencia.py --zip /ruta/privada/enedmu_adu
 
 La semilla es 42 y el flujo usa un único hilo. En Google Colab, la versión de Python del entorno hospedado puede diferir de la versión auditada: **no** inferir identidad byte a byte sin comprobarlo nuevamente.
 
+### Reproducción de la Figura 3 (perfiles K-means)
+
+La Figura 3 utiliza **medias descriptivas en escala 0–1** de los cuatro clusters ya identificados. Las variables binarias se muestran como proporciones medias; los montos winsorizados se dividen por el máximo global respectivo. **Esta escala gráfica no debe confundirse con la estandarización z-score utilizada para entrenar K-means.**
+
+```bash
+python scripts/10_figura3_perfiles_clusters.py \
+  --zip /ruta/privada/enedmu_adultos_mayores.zip \
+  --out /ruta/privada/figuras_cluster
+```
+
+El script exporta un mapa de calor, paneles comparativos, metadatos, SVG, PDF y PNG. No se comparten los microdatos. La normalización descriptiva se explica en el pie de la figura del manuscrito.
+
 ### Control de integridad científica
 
 GitHub Actions verifica en cada actualización: sintaxis de scripts, notebooks sin salidas, exclusión de datos privados, autorización de CSV agregados y concordancia entre Tabla 3, manifiesto y sensibilidad de Random Forest. Esta revisión automática **no ejecuta entrenamientos**.
