@@ -1,7 +1,7 @@
-# Evidencias agregadas (sin microdatos)
+# Evidencias publicables de la versión de referencia — ENEMDU 2025
 
-`rf_original_auditoria.json` fue calculado desde el ZIP privado entregado por el autor, cruzando `pred_rf.npy` con las etiquetas del `split_test_idx.npy` y la base segmentada. Incluye hashes SHA-256, confusión y métricas agregadas. **No incluye microdatos, índices individuales ni predicciones unitarias.**
+El análisis principal está documentado mediante código fuente, dependencias fijadas y métricas agregadas en `referencia_supervisada_2026/`. La exactitud (*accuracy*) de Random Forest en la Tabla 3 es **0,5504** y el F1-macro **0,4709**. Se verificó la repetibilidad numérica en el mismo entorno, con semilla 42 y un hilo.
 
-Las cifras de log-loss proceden únicamente del CSV histórico; no se recalcularon por falta de probabilidades oficiales por clase. La comparación de métricas no sustituye la reproducción del entrenamiento histórico.
+La comprobación supervisada con claves base del panel disjuntas tiene resultados agregados distintos por tratarse de **otro diseño de partición**. No sustituye la Tabla 3 ni valida externamente K-means.
 
-`reproduccion_etapas_2026_10_17.json` enumera las etapas efectivamente contrastadas y separa la coincidencia de las salidas históricas de la reproducción del entrenamiento.
+Los archivos históricos no utilizados en el manuscrito vigente se resguardan en el archivo privado del proyecto y en el historial versionado. Este directorio público contiene solamente agregados sin datos por registro.
