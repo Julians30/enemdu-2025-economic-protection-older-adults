@@ -45,6 +45,22 @@ python scripts/08_figuras_avanzadas_referencia.py --zip /ruta/privada/enedmu_adu
 
 La semilla es 42 y el flujo usa un único hilo. En Google Colab, la versión de Python del entorno hospedado puede diferir de la versión auditada: **no** inferir identidad byte a byte sin comprobarlo nuevamente.
 
+### Control de integridad científica
+
+GitHub Actions verifica en cada actualización: sintaxis de scripts, notebooks sin salidas, exclusión de datos privados, autorización de CSV agregados y concordancia entre Tabla 3, manifiesto y sensibilidad de Random Forest. Esta revisión automática **no ejecuta entrenamientos**.
+
+Para comprobar los resultados con el ZIP original y los vectores privados regenerados:
+
+```bash
+python scripts/09_verificar_entrega_referencia.py \
+  --public evidencias/referencia_supervisada_2026 \
+  --zip /ruta/privada/enedmu_adultos_mayores.zip \
+  --models /ruta/privada/resultados_modelos \
+  --advanced /ruta/privada/resultados_avanzados
+```
+
+Este script coteja seis métricas de los tres modelos, etiquetas, probabilidades y matrices de confusión con las tablas públicas. Sin los datos privados, la opción `--public` comprueba solamente consistencia interna de los agregados. La nueva versión del manuscrito aclara que la Tabla C1 es una validación **complementaria por grupos**, no la Tabla 3 histórica ni una validación externa de K-means.
+
 ### Sensibilidad de Random Forest y clase minoritaria
 
 - La Tabla A2 recalculada reporta **recall y falsos negativos por segmento** de Random Forest de referencia.
