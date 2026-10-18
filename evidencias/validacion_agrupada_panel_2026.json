@@ -1,0 +1,39 @@
+{
+  "proposito": "Evaluación de sensibilidad complementaria, NO reemplaza test histórico",
+  "n_registros": 45959,
+  "n_claves_base": 31101,
+  "train": 32237,
+  "test": 13722,
+  "grupos_compartidos_train_test": 0,
+  "clases": {
+    "1": {
+      "train": 0.3400130285076155,
+      "test": 0.3373414954088325
+    },
+    "2": {
+      "train": 0.022768868070850264,
+      "test": 0.025142107564494972
+    },
+    "3": {
+      "train": 0.315755188137854,
+      "test": 0.3119078851479376
+    },
+    "4": {
+      "train": 0.32146291528368026,
+      "test": 0.32560851187873485
+    }
+  },
+  "semilla": 42,
+  "train_index_sha256": "37ba507ef451fcadb02e7112bca6c260b3c26cde8a8c79ce78373aac276cb58f",
+  "test_index_sha256": "73dc905bb7a60b33241d9868f1d2a63d80f2d4fef3d6d64e64a35d2d72faea7d",
+  "nota": "Las claves base identifican posiciones persona–hogar, no identidades personales verificadas. Split no estratificado: comparar las prevalencias. Datos, identificadores y predicciones no publicados.",
+  "logit_escalado_solo_train": "edad y educ estandarizadas con scaler ajustado solo sobre entrenamiento",
+  "configuracion_rf": "250 árboles, max_depth=None, min_samples_leaf=5, balanced, seed=42; hiperparámetros provenientes de reentrenamiento exploratorio, NO configuración histórica RF verificada",
+  "xgboost_disponible": true,
+  "python": "3.13.5",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "scikit_learn": "1.8.0",
+  "xgboost": "3.1.3",
+  "nota_publicacion": "Identificadores, particiones y predicciones son privados. SHA de índices solo para control reproducible de la partición."
+}
