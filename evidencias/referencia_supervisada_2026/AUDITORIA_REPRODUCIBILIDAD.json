@@ -1,0 +1,100 @@
+{
+  "type": "nueva_ejecucion_referencia_2026-10-17",
+  "historical_rf_accuracy": 0.5308,
+  "historical_rf_status": "salidas verificadas; no entrenamiento idéntico",
+  "zip_sha256": "6f43393e72a270329b1f5a38542948f082c4c640743c2f9a16d2b8f12e0936d0",
+  "semilla": 42,
+  "test_n": 13788,
+  "train_n": 32171,
+  "num_features": 37,
+  "feature_names": [
+    "sexo_mujer",
+    "edad",
+    "jefe_hogar",
+    "educ",
+    "area_rural",
+    "etnia_1",
+    "etnia_2",
+    "etnia_3",
+    "etnia_4",
+    "etnia_5",
+    "etnia_6",
+    "etnia_7",
+    "etnia_8",
+    "prov_1",
+    "prov_10",
+    "prov_11",
+    "prov_12",
+    "prov_13",
+    "prov_14",
+    "prov_15",
+    "prov_16",
+    "prov_17",
+    "prov_18",
+    "prov_19",
+    "prov_2",
+    "prov_20",
+    "prov_21",
+    "prov_22",
+    "prov_23",
+    "prov_24",
+    "prov_3",
+    "prov_4",
+    "prov_5",
+    "prov_6",
+    "prov_7",
+    "prov_8",
+    "prov_9"
+  ],
+  "model_config": {
+    "rf_tuning": {
+      "min_samples_leaf": 5,
+      "max_depth": null
+    },
+    "rf_cv_score": 0.4803635680817968,
+    "rf_selection": "RandomizedSearchCV(3 configs, 2 folds; stratified subsample of 12000 from TRAIN)",
+    "train_indices": "from original split_test_idx.npy; not published",
+    "seed": 42
+  },
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.8.0",
+    "xgboost": "3.1.3",
+    "scipy": "1.17.0",
+    "joblib": "1.5.3"
+  },
+  "metrics": [
+    {
+      "modelo": "logit",
+      "accuracy": 0.5157383231795765,
+      "f1_macro": 0.4500101332862026,
+      "f1_weighted": 0.5424454630586608,
+      "kappa": 0.3317176084719784,
+      "log_loss": 1.0954253279179529,
+      "brier_multiclase": 0.6111239654529447
+    },
+    {
+      "modelo": "rf",
+      "accuracy": 0.550406150275602,
+      "f1_macro": 0.47091132149916326,
+      "f1_weighted": 0.5666024196013749,
+      "kappa": 0.36411622566231006,
+      "log_loss": 1.023610130349953,
+      "brier_multiclase": 0.5750412645242996
+    },
+    {
+      "modelo": "xgb",
+      "accuracy": 0.5424281984334204,
+      "f1_macro": 0.4675803551039403,
+      "f1_weighted": 0.5623138877440619,
+      "kappa": 0.35857677938081545,
+      "log_loss": 1.0425890744169324,
+      "brier_multiclase": 0.5846457714155904
+    }
+  ],
+  "rf_threshold_selected_train_oof": 0.49,
+  "scope": "clasificadores desde etiquetas K-means del dataset original: no revalida clusters externos",
+  "test_indices_and_predictions_are_private": true
+}

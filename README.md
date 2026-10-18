@@ -1,101 +1,62 @@
-# ENEMDU 2025 — Heterogeneidad socioeconómica y protección económica
+# ENEMDU 2025 — Economic Protection of Older Adults in Ecuador
 
+**Segmentación económico-laboral y pensionaria de personas de 65 años o más.** Estudio con K-means, evaluación supervisada de tres clasificadores, calibración, sensibilidad a umbrales y explicabilidad. Esta versión documenta una **nueva ejecución supervisada reproducible**, distinta de ciertos resultados históricos archivados.
 
-## Objeto de la investigación
+## Resultados de referencia
 
-Segmentación en cuatro perfiles empíricos de **protección económica en su dimensión económico-laboral y pensionaria** de adultos mayores en Ecuador, seguida de clasificación a partir de predictores sociodemográficos. Fuente: microdatos ENEMDU 2025 (INEC), sujetos a sus condiciones oficiales de uso.
+- **Muestra y segmentación:** 45.959 registros analíticos; cuatro perfiles. El ARI bootstrap medio = **0,9905** informa estabilidad estadística, **no** validación externa ni reproducibilidad computacional por sí solo.
+- **Clasificación supervisada:** partición de referencia por registros 70/30 (TRAIN = 32.171, TEST = 13.788), índices originales fijados, semilla 42. Métricas sobre TEST, **sin ponderación**:
 
-**Alcance de esta versión:** incluye la trazabilidad de la preparación de datos, la segmentación, la estabilidad y la evaluación histórica a partir de los artefactos conservados. La reconstrucción exacta del entrenamiento supervisado se documenta como una verificación metodológica todavía abierta; por ello no se presenta como una reproducción integral certificada.
+| Clasificador | Accuracy | F1-macro | Log-loss |
+|---|---:|---:|---:|
+| Regresión logística (variables numéricas escaladas solo en TRAIN) | 0,5157 | 0,4500 | 1,0954 |
+| Random Forest (250 árboles; hoja mínima 5) | **0,5504** | **0,4709** | **1,0236** |
+| XGBoost (350 árboles; configuración registrada) | 0,5424 | 0,4676 | 1,0426 |
 
-## Repositorio del proyecto
+Estas métricas, las probabilidades y las predicciones **se reprodujeron de forma idéntica byte a byte en dos ejecuciones independientes con el entorno fijado y un hilo**. Las evaluaciones avanzadas también se repitieron con resultados idénticos. Solo se publican métricas agregadas.
 
-Repositorio oficial de código del proyecto: **[Julians30/enemdu-2025-economic-protection-older-adults](https://github.com/Julians30/enemdu-2025-economic-protection-older-adults)**.
-Este repositorio contiene código, documentación, configuraciones documentadas y **resultados agregados de auditoría**, pero no contiene los microdatos ENEMDU ni los artefactos por registro. **La publicación de código no certifica automáticamente la reproducibilidad del entrenamiento histórico.** Se prevé archivar una versión con DOI cuando se hayan cerrado las comprobaciones restantes.
+### Contexto de trazabilidad histórica
 
-## Resultados de referencia y verificación
+Un archivo histórico anterior de Random Forest conserva **accuracy = 0,5308** y **F1-macro = 0,4588** (recalculables desde predicciones archivadas), pero no se ha recuperado la configuración efectiva del entrenamiento que los generó. Por tanto, **esos valores históricos no se mezclan con las tablas de referencia actuales ni se presenta su ajuste como reproducido**. Esta distinción se explica en el apéndice del manuscrito y la [matriz de observaciones](docs/ESTADO_OBSERVACIONES_TUTOR.md).
 
-El análisis documenta cuatro perfiles económico-laborales y pensionarios mediante K-means. En la evaluación supervisada histórica, las métricas de Random Forest fueron **accuracy = 0,5308**, **F1-macro = 0,4588**, **F1-ponderado = 0,5535** y **kappa = 0,3465**. Estas métricas fueron **recalculadas a partir de predicciones y etiquetas archivadas** para los 13.788 registros de prueba y no se confunden con un nuevo entrenamiento.
+## Archivos para reproducir
 
-La preparación de datos, la segmentación y las comprobaciones de estabilidad se contrastaron con los artefactos originales. La **reproducción exacta del ajuste histórico de Random Forest** continúa bajo auditoría y no debe darse por certificada. La trazabilidad de ejecuciones y las diferencias entre ajustes independientes se explican en [la documentación técnica de auditoría](docs/ESTADO_OBSERVACIONES_TUTOR.md). Ningún nuevo ajuste sustituye automáticamente el resultado de referencia.
-
-## Carpeta de notebooks
-
-- `notebooks/01_ENEMDU_Evaluacion_Avanzada_CORREGIDA.ipynb`: permite realizar una evaluación experimental independiente y documentada. Sus métricas no sustituyen las del conjunto de artefactos históricos; exige la partición exacta del ZIP.
-- `notebooks/02_Auditar_RF_definitivo_y_tabla_A2.ipynb`: lee el ZIP privado original y verifica el RF oficial **0,5308**, generando sensibilidad por clase y falsos negativos a partir de `pred_rf.npy`. Los umbrales alternativos siguen sin reconstruirse sin probabilidades originales.
-
-**Todos los notebooks se entregan sin salidas preguardadas**, para evitar confusiones con resultados anteriores o publicación involuntaria de datos.
-
-## Instrucciones rápidas (Google Colab)
-
-1. Descargar y conservar de forma privada `enedmu_adultos_mayores.zip`. **No subirlo a GitHub**.
-2. Abrir en Colab el notebook `01_...CORREGIDA.ipynb` e instalar paquetes en el entorno real (las dependencias exactas de la ejecución histórica todavía deben recuperarse).
-3. Subir el ZIP cuando lo solicite la celda 2. Debe incluir `adultos_mayores_con_cluster.csv` y `split_test_idx.npy`. El cuaderno se detiene si falta el split exacto.
-4. Ejecutar celdas secuencialmente. Los resultados generados por este notebook son una **nueva ejecución experimental**. Consultar los archivos de control para conocer su procedencia y no mezclarlos con los resultados archivados.
-5. Si están disponibles las probabilidades TEST y TRAIN-OOF del RF definitivo, abrir el notebook `02_...tabla_A2.ipynb`. Con solo `metricas_rf.csv` **NO** es posible reconstruir la tabla A2.
-6. Guardar las predicciones en carpeta privada, comprobando que TEST corresponde exactamente a 13.788 registros y que la selección de umbral usa solo TRAIN.
-7. Ejecutar `python scripts/01_auditar_insumos.py /ruta/enedmu_adultos_mayores.zip` para auditoría de inventario y `python scripts/02_capturar_entorno.py --output_dir evidencias/entorno_real` en el **mismo entorno que ejecutó el análisis**. Verificar que la interfaz de ejecución coincide con la versión indicada en el manuscrito.
-8. Los scripts de depuración, K-means, bootstrap, clasificación y SHAP ya se recuperaron; ejecutar el flujo en un entorno controlado, contrastar resultados, determinar las versiones históricas reales y resolver las discrepancias antes de declarar reproducibilidad integral.
-
-## Organización
-
-```
-notebooks/         # 01 exploratorio corregido y 02 auditoría RF oficial
-scripts/           # auditoría de ZIP, captura del entorno, validación local
-config/            # valores históricamente documentados (no recalculados)
-docs/              # observaciones del tutor y pendientes
-requirements_por_verificar.in  # paquetes, todavía sin versión confirmada
+```text
+scripts/
+  01...05                   preparación, elección K, clustering, bootstrap, supervisión histórica (conservados)
+  06_modelos_referencia_reproducibles.py  modelos y sensibilidad RF
+  07_evaluacion_avanzada_referencia.py    calibración TRAIN-OOF, umbrales y métricas
+  08_figuras_avanzadas_referencia.py      gráficos XGBoost y SHAP
+requirements_referencia_fija.txt         entorno auditado Python 3.13.5
+evidencias/referencia_supervisada_2026/   tablas agregadas y protocolo auditado
 ```
 
-## Control científico y ético
+**Importante:** los scripts 06–08 leen un ZIP privado que contiene la base analítica segmentada y el split original. Para comprobar también la obtención de esa base desde microdatos, ejecutar primero los scripts portables 01–04 documentados en `scripts/flujo_original_portable/`. Los microdatos se obtienen de manera legítima desde el INEC; **no** se redistribuyen en este repositorio.
 
-- La unidad observacional son **registros ENEMDU**, no 45.959 personas únicas.
-- Las 31.101 claves base corresponden a **posiciones persona–hogar** del panel, no a identidades físicas comprobadas.
-- En la partición inicial por filas, 6.362 registros TEST (46,14 %) comparten clave base con TRAIN; no asumir generalización a personas independientes.
-- ARI bootstrap K=4 = 0,9905 mide **estabilidad del agrupamiento**, no reproducibilidad informática.
-- No atribuir métricas ni gráficos del RF reentrenado a la ejecución definitiva.
-- No publicar predicciones individuales, CSV analíticos, modelos serializados ni ZIP originales sin revisar bases legales, condiciones del INEC y privacidad.
-
-## Validación complementaria agrupada por posiciones del panel
-
-Se realizó una comprobación adicional de la fase supervisada con **GroupShuffleSplit** (semilla 42) sobre claves base de `id_persona` sin el sufijo de mes: 32.237 registros en TRAIN, 13.722 en TEST y **cero claves compartidas**. Los tres clasificadores se reentrenaron con atributos sociodemográficos y se publicaron únicamente **métricas agregadas**, código y metadatos (sin registros individuales).
-
-Esta evaluación **no sustituye** el TEST histórico de la Tabla 3 ni valida externamente el K-means (las etiquetas se construyeron originalmente con toda la muestra). Consulta [protocolo, resultados e interpretación](docs/VALIDACION_AGRUPADA_PANEL_2026.md) y [script de ejecución](scripts/validacion_agrupada_panel.py). Se dispone también de un notebook de Google Colab en el Drive privado del proyecto.
-
-## Estado de la Tabla A2
-
-**Verificada como sensibilidad de clasificación por segmentos (recall por clase)** con los vectores originales `pred_rf.npy` y `split_test_idx.npy`. La sensibilidad a cambios de umbral no está demostrada por falta de probabilidades del RF original. La anterior A2 de XGBoost pasa a A3 en el manuscrito revisado.
-
-## Referencia al repositorio
-
-La URL pública corresponde a este repositorio. Para citar una versión inmutable, use el enlace al commit concreto de GitHub. El DOI de Zenodo/OSF todavía no existe y no se ha inventado.
-
-## Evidencia de auditoría del archivo original (17/oct/2026)
-
-- Se recibieron scripts originales, microdatos 2025, base segmentada e índices/predicciones históricos. **Los microdatos NO se incluyen aquí**.
-- RF definitivo recalculado desde etiquetas: accuracy=**0,530751** (0,5308), F1-macro=**0,458765** (0,4588), F1-ponderado=**0,553518**, kappa=**0,346520**.
-- Segmento minoritario 2: 324 casos reales, 163 verdaderos positivos, 161 falsos negativos, recall **50,31 %**, precisión **8,34 %**. La tabla A2 es **sensibilidad observada por clase** a la regla original, NO curva sensibilidad-umbral.
-- `evidencias/rf_original_auditoria.json` guarda métricas agregadas, confusión y hashes. El log-loss **1,0464** solo consta en el archivo `metricas_rf.csv`: no fue posible recalcularlo desde etiquetas sin probabilidades del RF.
-- `scripts/flujo_original_portable/` incluye versiones con rutas portables de los scripts recuperados (lógica de modelado conservada; no garantizan resultados idénticos bajo bibliotecas actuales).
-- `requirements_validacion_2026_10_17.txt` especifica el entorno disponible para las comprobaciones de auditoría; NO identifica el entorno histórico.
-
-### Comprobaciones y relanzamiento (no equivalen a reproducción integral certificada)
+### Ejecución de referencia (terminal local)
 
 ```bash
-python -m pip install -r requirements_validacion_2026_10_17.txt
-python scripts/01_auditar_insumos.py /ruta/enedmu_adultos_mayores.zip
-python scripts/04_verificar_rf_oficial.py --zip /ruta/enedmu_adultos_mayores.zip --salida resultados_rf_auditoria
-# Relanzamiento del proceso desde ENEMDU crudo en un directorio privado externo al repositorio:
-python scripts/ejecutar_flujo_portable.py --zip /ruta/enedmu_adultos_mayores.zip --workspace /directorio_privado/enemdu_analisis --fase preparar
-# Opciones posteriores: segmentar, bootstrap, supervisado_rf, completo.
+python -m pip install -r requirements_referencia_fija.txt
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+python scripts/06_modelos_referencia_reproducibles.py --zip /ruta/privada/enedmu_adultos_mayores.zip --out /ruta/privada/resultados_modelos
+python scripts/07_evaluacion_avanzada_referencia.py --zip /ruta/privada/enedmu_adultos_mayores.zip --models /ruta/privada/resultados_modelos --out /ruta/privada/resultados_avanzados
+python scripts/08_figuras_avanzadas_referencia.py --zip /ruta/privada/enedmu_adultos_mayores.zip --models /ruta/privada/resultados_modelos --avanzado /ruta/privada/resultados_avanzados --out /ruta/privada/figuras
 ```
 
-El ejecutor crea **nuevos resultados en un workspace privado** y nunca debe reemplazar los vectores RF del ZIP original. El estudio usa partición original por registros; una evaluación con agrupamiento longitudinal es una extensión metodológica pendiente.
+La semilla es 42 y el flujo usa un único hilo. En Google Colab, la versión de Python del entorno hospedado puede diferir de la versión auditada: **no** inferir identidad byte a byte sin comprobarlo nuevamente.
 
+### Sensibilidad de Random Forest y clase minoritaria
 
-## Publicación por el autor
+- La Tabla A2 recalculada reporta **recall y falsos negativos por segmento** de Random Forest de referencia.
+- La Tabla A3 incluye **cambios de umbral de la clase 2** del mismo modelo, calculados a partir de probabilidades guardadas en forma privada; el umbral elegido se determinó por OOF de TRAIN, nunca sobre TEST.
+- La Tabla 5 utiliza un calibrador isotónico seleccionado por Brier Score en una subdivisión de TRAIN-OOF; todos los modelos se reportan de forma coherente. El archivo de resultados públicos y el script describen el procedimiento.
 
-Consulte `docs/PROTOCOLO_REPRODUCIBILIDAD.md` antes de ejecutar o reutilizar este contenido. El repositorio **no** debe incluir `enedmu_adultos_mayores.zip`, la base analítica, predicciones individuales, contraseñas, tokens ni documentación con datos personales. El material publicable se limita a código, configuraciones, documentación y resultados **agregados**. Los scripts portables se proporcionan para validación, no como prueba de que el ajuste histórico de RF pueda reconstruirse idéntico.
+## Límites y alcance
 
-## Licencia y procedencia
+1. La partición principal es por **registros**, no disjunta por posiciones persona–hogar del panel; 6.362 registros TEST comparten clave base con TRAIN. Por separado, se ejecutó validación agrupada supervisada con **cero claves compartidas**. Ambas etiquetas de cluster fueron construidas en el conjunto analítico completo; esto **no** constituye validación externa de K-means.
+2. Las claves base de panel se denominan **posiciones persona–hogar**, no individuos físicos únicos.
+3. La protección económica observada se limita a las dimensiones **económico-laboral y pensionaria**; no mide todos los ingresos o recursos del hogar.
+4. No publicar los microdatos ENEMDU privados, identificadores, índices individuales de partición, modelos serializados ni predicciones/probabilidades por registro. El acceso original a ENEMDU se rige por sus condiciones oficiales.
+5. El repositorio publica código y resultados agregados; un DOI permanente (Zenodo/OSF) y la adaptación a una revista concreta dependen de posteriores decisiones editoriales.
 
-El repositorio incluye la licencia MIT seleccionada por su propietario para el código cuya redistribución está autorizada. La licencia **no** sustituye las condiciones oficiales de uso de los microdatos del INEC ni concede derechos sobre código de terceros sin su autorización. Compruebe los créditos de los colaboradores antes de reutilizar o relicenciar material ajeno.
+**Tutor:** Christian Johnson. **Licencia:** MIT para el código propio sujeto a derechos de terceros; no aplica automáticamente a los microdatos del INEC.
