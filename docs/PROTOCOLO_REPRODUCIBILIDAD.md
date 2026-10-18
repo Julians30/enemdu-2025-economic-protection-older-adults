@@ -1,32 +1,15 @@
-# Protocolo de reproducción y verificación (ENEMDU 2025)
+# Protocolo vigente — ENEMDU 2025
 
-**Repositorio:** https://github.com/Julians30/enemdu-2025-economic-protection-older-adults
+Para la **nueva versión supervisada de referencia** (auditada el 17 de octubre de 2026), seguir el [README](../README.md), instalar [versiones fijadas](../requirements_referencia_fija.txt) y ejecutar secuencialmente:
 
-## Fuentes y resguardo
+1. [Entrenamiento y sensibilidad RF](../scripts/06_modelos_referencia_reproducibles.py)
+2. [Calibración y umbrales solo TRAIN-OOF](../scripts/07_evaluacion_avanzada_referencia.py)
+3. [Figuras reproducibles](../scripts/08_figuras_avanzadas_referencia.py)
 
-1. Descargue los microdatos ENEMDU 2025 desde fuentes oficiales del INEC, cumpliendo los términos de acceso y uso aplicables. Los microdatos y predicciones individuales **no se publican** en este repositorio.
-2. Conserve el paquete original `enedmu_adultos_mayores.zip` en una carpeta privada fuera del repositorio. Este paquete incluye archivos intermedios y salidas históricas que no equivalen al dataset distribuible.
-3. Trabaje en un entorno privado de Python. `requirements_validacion_2026_10_17.txt` recoge versiones utilizadas para algunas comprobaciones, **no** las versiones históricas originales; `requirements.txt` es un entorno de trabajo sugerido, no un lockfile históricamente validado.
+Los códigos 06–08 leen el ZIP privado y reutilizan las etiquetas K=4, ya contrastadas desde los microdatos ENEMDU mediante scripts 01–04. No compartir el ZIP, los identificadores, predicciones y probabilidades individuales ni modelos serializados. Los resultados públicos están en [evidencias](../evidencias/referencia_supervisada_2026/).
 
-## Verificación trazable
+**Verificación:** dos ejecuciones independientes, en el entorno Python 3.13.5 con semilla 42 y un hilo, dieron archivos de predicción y matrices probabilísticas idénticos byte a byte. La etapa de evaluación avanzada también se repitió con resultados idénticos. Esta afirmación se limita al entorno y a la ejecución actual; no reconstruye exactamente el Random Forest antiguo (accuracy 0,5308), ni constituye validación externa de K-means.
 
-```bash
-python -m pip install -r requirements_validacion_2026_10_17.txt
-python scripts/01_auditar_insumos.py /RUTA_PRIVADA/enedmu_adultos_mayores.zip
-python scripts/04_verificar_rf_oficial.py --zip /RUTA_PRIVADA/enedmu_adultos_mayores.zip --salida /RUTA_PRIVADA/auditoria_rf
-python scripts/ejecutar_flujo_portable.py --zip /RUTA_PRIVADA/enedmu_adultos_mayores.zip --workspace /RUTA_PRIVADA/analisis --fase preparar
-python scripts/ejecutar_flujo_portable.py --zip /RUTA_PRIVADA/enedmu_adultos_mayores.zip --workspace /RUTA_PRIVADA/analisis --fase segmentar
-python scripts/ejecutar_flujo_portable.py --zip /RUTA_PRIVADA/enedmu_adultos_mayores.zip --workspace /RUTA_PRIVADA/analisis --fase bootstrap
-```
+**Prueba de dependencia de panel:** consultar [validación agrupada complementaria](VALIDACION_AGRUPADA_PANEL_2026.md). La partición agrupada no sustituye la Tabla 3: usa TRAIN y TEST diferentes y clusters derivados de toda la base.
 
-Use el ejecutor `--fase supervisado_rf` exclusivamente para contrastar **otra ejecución**; **no** es la reproducción certificada de Random Forest 0,5308. No mezcle datos generados con los vectores y métricas históricas. Para análisis de sensibilidad a umbrales RF, deben recuperarse probabilidades OOF TRAIN y TEST del RF histórico, **no** utilizar probabilidades del modelo reentrenado.
-
-## Comprobaciones realizadas y limitaciones
-
-- Preparación: 45.959 registros ENEMDU 65+, verificados contra los datos históricos aportados.
-- K=4: se verificó coincidencia íntegra de las 45.959 etiquetas y 25 réplicas bootstrap (ARI promedio 0,9905).
-- Partición: 13.788 registros TEST; corresponde al split original **por filas**, susceptible de dependencia longitudinal entre train/test.
-- Predicciones históricas RF: accuracy 0,5308; F1-macro 0,4588; kappa 0,3465, recalculados de las etiquetas. Log-loss 1,0464 consta en un archivo histórico y **no** puede recalcularse sin probabilidades.
-- Reentrenamiento posterior: accuracy 0,5504; F1-macro 0,4709. La diferencia con las salidas originales no se ha conciliado.
-
-**Estado editorial:** material de auditoría y código público disponibles; reproducibilidad completa del resultado RF original y sensibilidad a umbrales pendientes. Referenciar mediante enlace a commit específico después de publicarse, sin atribuir DOI inexistente.
+**DOI:** sin DOI asignado por el momento; la recomendación de depositar una versión permanente no se presenta como completada.
