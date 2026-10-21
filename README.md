@@ -2,6 +2,31 @@
 
 **Segmentación económico-laboral y pensionaria de personas de 65 años o más.** Estudio con K-means, evaluación supervisada de tres clasificadores, calibración, sensibilidad a umbrales y explicabilidad. Esta versión documenta una **nueva ejecución supervisada reproducible**, distinta de ciertos resultados históricos archivados.
 
+## Autoría del manuscrito asociado
+
+El artículo **«Heterogeneidad socioeconómica y protección económica de los adultos mayores en Ecuador: segmentación y clasificación mediante aprendizaje automático a partir de la ENEMDU 2025»** tiene los siguientes **dos autores**, en el orden indicado en el manuscrito:
+
+1. **José Julián Coronel Reyes** — [ORCID 0000-0002-7883-5388](https://orcid.org/0000-0002-7883-5388) · jcoronelr3@unemi.edu.ec
+2. **Fidel Eduardo Romero León** — [ORCID 0009-0007-9825-1850](https://orcid.org/0009-0007-9825-1850) · fromerol3@unemi.edu.ec
+
+**Afiliación compartida:** Universidad Estatal de Milagro (UNEMI), Escuela de Posgrado, Maestría en Economía con mención en Inteligencia Artificial Aplicada, Ecuador. Código postal 091050.
+
+Se documenta aquí la **autoría del artículo científico**. La atribución del código y las condiciones de reutilización del software se rigen por la licencia del repositorio; no debe confundirse la autoría del manuscrito con titularidad o contribuciones individuales al código.
+
+**Estado editorial:** manuscrito en preparación/revisión; aún no hay revista, fecha de publicación ni DOI del artículo o de una versión archivada del software que deban citarse como existentes.
+
+## Verificación complementaria del 20 de octubre de 2026
+
+En una auditoría con los artefactos originales del estudio conservados de forma privada se comprobó:
+
+- El archivo anual de referencia incluye **334.786 registros**; **45.959** corresponden a personas de 65 años o más. La suma de `fexp` sobre esos registros es **1.855.076,4174**. Esa suma es una **estimación anual ponderada**, no un recuento de personas distintas entrevistadas; su interpretación debe respetar el diseño y las reglas de ponderación del INEC.
+- Las **31.101 claves base** de panel representan posiciones persona–hogar, no identidades personales necesariamente únicas. **6.362 registros de TEST** de la partición inicial comparten clave base con TRAIN.
+- Con el ZIP original se **reprodujeron los resultados supervisados de referencia** de la Tabla 3: logit (accuracy 0,5157; F1-macro 0,4500), Random Forest (0,5504; 0,4709) y XGBoost (0,5424; 0,4676).
+- Se ejecutó nuevamente la **validación supervisada agrupada**: 32.237 TRAIN, 13.722 TEST y **cero claves base compartidas**. Los F1-macro fueron 0,4570, 0,4708 y 0,4641, respectivamente. Sus resultados **no sustituyen** a los de la Tabla 3.
+- Esta comprobación utiliza archivos privados originales y un entorno controlado; **no demuestra reproducción integral independiente desde una descarga nueva de ENEMDU**, ni validación externa de la segmentación K-means.
+
+La nota de trazabilidad se amplía en [la comprobación del manuscrito de octubre de 2026](docs/COMPROBACION_MANUSCRITO_2026_10_20.md). Los datos, identificadores y predicciones individuales permanecen fuera del repositorio público.
+
 ## Resultados de referencia
 
 - **Muestra y segmentación:** 45.959 registros analíticos; cuatro perfiles. El ARI bootstrap medio = **0,9905** informa estabilidad estadística, **no** validación externa ni reproducibilidad computacional por sí solo.
