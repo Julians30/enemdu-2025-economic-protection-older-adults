@@ -18,7 +18,7 @@ El artículo **«Heterogeneidad socioeconómica y protección económica de los 
 En el orden indicado en la carta de aceptación:
 
 1. **Fidel Eduardo Romero León** — [ORCID 0009-0007-9825-1850](https://orcid.org/0009-0007-9825-1850) · fromerol3@unemi.edu.ec
-2. **José Julián Coronel Reyes** — [ORCID 0000-0002-7883-5388](https://orcid.org/0000-0002-7883-5388) · jcoronelr3@unemi.edu.ec
+2. **José Julián Coronel Reyes** (autor de correspondencia) — [ORCID 0000-0002-7883-5388](https://orcid.org/0000-0002-7883-5388) · jcoronelr3@unemi.edu.ec
 3. **Christian Daniel Johnson Plascencio**
 
 **Afiliación:** Universidad Estatal de Milagro (UNEMI), Escuela de Posgrado, Maestría en Economía con mención en Inteligencia Artificial Aplicada, Ecuador. Código postal 091050.
