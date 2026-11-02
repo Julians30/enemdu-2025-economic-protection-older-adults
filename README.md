@@ -2,18 +2,36 @@
 
 **Segmentación económico-laboral y pensionaria de personas de 65 años o más.** Estudio con K-means, evaluación supervisada de tres clasificadores, calibración, sensibilidad a umbrales y explicabilidad. Esta versión documenta una **nueva ejecución supervisada reproducible**, distinta de ciertos resultados históricos archivados.
 
-## Autoría del manuscrito asociado
+## Artículo asociado: aceptado para publicación
 
-El artículo **«Heterogeneidad socioeconómica y protección económica de los adultos mayores en Ecuador: segmentación y clasificación mediante aprendizaje automático a partir de la ENEMDU 2025»** tiene los siguientes **dos autores**, en el orden indicado en el manuscrito:
+El artículo **«Heterogeneidad socioeconómica y protección económica de los adultos mayores en Ecuador: segmentación y clasificación mediante aprendizaje automático a partir de la ENEMDU 2025»** fue **aceptado para su publicación** en [*Multidisciplinary Latin American Journal* (MLAJ)](https://mlaj-revista.org/index.php/journal), ISSN en línea 2960-8414, tras evaluación por pares doble ciego y revisión antiplagio.
 
-1. **José Julián Coronel Reyes** — [ORCID 0000-0002-7883-5388](https://orcid.org/0000-0002-7883-5388) · jcoronelr3@unemi.edu.ec
-2. **Fidel Eduardo Romero León** — [ORCID 0009-0007-9825-1850](https://orcid.org/0009-0007-9825-1850) · fromerol3@unemi.edu.ec
+| Dato editorial | Estado |
+|---|---|
+| Revista | *Multidisciplinary Latin American Journal* (MLAJ), ISSN 2960-8414 |
+| Fecha de la carta de aceptación | 30 de octubre de 2026 |
+| Número asignado | Vol. 4, Núm. 3 (2026), periodo septiembre–diciembre |
+| Páginas y DOI del artículo | **Pendientes**: se agregarán cuando la revista publique el artículo |
 
-**Afiliación compartida:** Universidad Estatal de Milagro (UNEMI), Escuela de Posgrado, Maestría en Economía con mención en Inteligencia Artificial Aplicada, Ecuador. Código postal 091050.
+### Autores
+
+En el orden indicado en la carta de aceptación:
+
+1. **Fidel Eduardo Romero León** — [ORCID 0009-0007-9825-1850](https://orcid.org/0009-0007-9825-1850) · fromerol3@unemi.edu.ec
+2. **José Julián Coronel Reyes** — [ORCID 0000-0002-7883-5388](https://orcid.org/0000-0002-7883-5388) · jcoronelr3@unemi.edu.ec
+3. **Christian Daniel Johnson Plascencio**
+
+**Afiliación:** Universidad Estatal de Milagro (UNEMI), Escuela de Posgrado, Maestría en Economía con mención en Inteligencia Artificial Aplicada, Ecuador. Código postal 091050.
 
 Se documenta aquí la **autoría del artículo científico**. La atribución del código y las condiciones de reutilización del software se rigen por la licencia del repositorio; no debe confundirse la autoría del manuscrito con titularidad o contribuciones individuales al código.
 
-**Estado editorial:** manuscrito en preparación/revisión; aún no hay revista, fecha de publicación ni DOI del artículo o de una versión archivada del software que deban citarse como existentes.
+### Cómo citar
+
+Mientras el artículo está en prensa (APA 7):
+
+> Romero-León, F. E., Coronel-Reyes, J. J., y Johnson-Plascencio, C. D. (en prensa). Heterogeneidad socioeconómica y protección económica de los adultos mayores en Ecuador: Segmentación y clasificación mediante aprendizaje automático a partir de la ENEMDU 2025. *Multidisciplinary Latin American Journal*.
+
+Una vez publicado, la referencia se actualizará con año, volumen, número, páginas y DOI. Ni el artículo ni una versión archivada del software tienen todavía un DOI que deba citarse como existente.
 
 ## Verificación complementaria del 20 de octubre de 2026
 
@@ -111,6 +129,6 @@ Este script coteja seis métricas de los tres modelos, etiquetas, probabilidades
 2. Las claves base de panel se denominan **posiciones persona–hogar**, no individuos físicos únicos.
 3. La protección económica observada se limita a las dimensiones **económico-laboral y pensionaria**; no mide todos los ingresos o recursos del hogar.
 4. No publicar los microdatos ENEMDU privados, identificadores, índices individuales de partición, modelos serializados ni predicciones/probabilidades por registro. El acceso original a ENEMDU se rige por sus condiciones oficiales.
-5. El repositorio publica código y resultados agregados; un DOI permanente (Zenodo/OSF) y la adaptación a una revista concreta dependen de posteriores decisiones editoriales.
+5. El repositorio publica código y resultados agregados. El artículo fue aceptado en MLAJ; el DOI del artículo lo asignará la revista al publicarlo, y un DOI permanente para el software (Zenodo/OSF) sigue siendo una decisión pendiente del equipo autoral.
 
-**Tutor:** Christian Johnson. **Licencia:** MIT para el código propio sujeto a derechos de terceros; no aplica automáticamente a los microdatos del INEC.
+**Tutor:** Christian Daniel Johnson Plascencio (coautor del artículo). **Licencia:** MIT para el código propio sujeto a derechos de terceros; no aplica automáticamente a los microdatos del INEC.
